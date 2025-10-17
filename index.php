@@ -10,6 +10,7 @@ if (!isset($_SESSION["user_id"])) {             //Redirects to login page if not
 <!DOCTYPE html>
 <html>
 <head>
+    <a href="pages/add_post.php">Add New Post</a>       <!-- Link to add new post page-->
     <title>Welcome</title>
 </head>
 <body>
