@@ -1,5 +1,5 @@
 <?php
-include 'config.php';    // 
+include 'config.php';    
 
 $message = "Hello, Please Register Yourself to access the blog!";
 $errors = [];
@@ -37,8 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $stmt->close();
     } else {
-        // Join all errors into a single string to display
-        $message = implode("<br>", $errors);
+        $message = implode("<br>", $errors);     // Join all errors into a single string to display
     }
 }
 ?>
