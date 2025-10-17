@@ -1,5 +1,5 @@
 <?php
-include 'config.php';    
+include '../config.php';    
 
 $message = "Hello, Please Register Yourself to access the blog!";
 $errors = [];
