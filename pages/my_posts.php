@@ -75,7 +75,11 @@ $result = $stmt->get_result();
                 <div class="markdown-content" 
                     data-content="<?php echo htmlspecialchars($row['content'], ENT_QUOTES); ?>">
                 </div>
-                <p><small>Created at: <?php echo $row['created_at']; ?></small></p>
+                <p class="meta">
+                    Posted by <?php echo htmlspecialchars($row["username"]); ?> 
+                    on <?php echo $row["created_at"]; ?>
+                </p>
+
                 <div class="actions">
                     <a href="edit_post.php?id=<?php echo $row['id']; ?>">Edit</a>
                     <a href="delete_post.php?id=<?php echo $row['id']; ?>" class="delete" onclick="return confirm('Are you sure you want to delete this post?');">Delete</a>
