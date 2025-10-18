@@ -2,16 +2,14 @@
 session_start();
 include 'config.php';
 
-if (!isset($_SESSION["user_id"])) {
-    header("Location: pages/login.php");
-    exit;
-}
-
+// Fetch all posts for public view
 $sql = "SELECT posts.*, users.username 
         FROM posts 
         JOIN users ON posts.user_id = users.id 
         ORDER BY posts.created_at DESC";
 $result = $conn->query($sql);
+
+$isLoggedIn = isset($_SESSION["user_id"]);
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,18 +18,33 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<h1>All Blog Posts</h1>
-<p>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</p>
-<a href="pages/add_post.php" class="btn">➕ New Post</a> |
-<a href="pages/my_posts.php" class="btn">📝 My Posts</a> |
-<a href="pages/logout.php" class="btn">🚪 Logout</a>
+<header>
+    <h1>Welcome to My Blog</h1>
+
+    <div class="nav-buttons">
+        <a href="pages/add_post.php" class="btn">➕ New Post</a>
+        <a href="pages/my_posts.php" class="btn">📝 My Posts</a>
+        <a href="pages/logout.php" class="btn">🚪 Logout</a>
+        <?php if (!$isLoggedIn): ?>
+            <a href="pages/login.php" class="btn">🔑 Login</a>
+            <a href="pages/register.php" class="btn">🧾 Register</a>
+        <?php endif; ?>
+    </div>
+
+    <?php if ($isLoggedIn): ?>
+        <p>Logged in as <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong> 
+        (<?php echo $_SESSION["role"]; ?>)</p>
+    <?php else: ?>
+        <p>You are viewing in <strong>guest mode</strong>. Log in to post or read full articles.</p>
+    <?php endif; ?>
+</header>
 <hr>
 
 <div class="posts-container">
 <?php while ($row = $result->fetch_assoc()): ?>
     <div class="post">
         <h2>
-            <a href="pages/view_post.php?id=<?php echo $row['id']; ?>">
+            <a href="<?php echo $isLoggedIn ? 'pages/view_post.php?id=' . $row['id'] : 'pages/login.php'; ?>">
                 <?php echo htmlspecialchars($row['title']); ?>
             </a>
         </h2>
@@ -48,12 +61,14 @@ $result = $conn->query($sql);
             <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Post image">
         <?php endif; ?>
 
-        <a href="pages/view_post.php?id=<?php echo $row['id']; ?>" class="btn">Read More →</a>
+        <a href="<?php echo $isLoggedIn ? 'pages/view_post.php?id=' . $row['id'] : 'pages/login.php'; ?>" class="btn">
+            Read More →
+        </a>
     </div>
 <?php endwhile; ?>
 </div>
 
-<!-- Markdown Renderer -->
+<!-- Markdown Rendering -->
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
 <script>
   const converter = new showdown.Converter({ emoji: true });
