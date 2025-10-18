@@ -18,25 +18,19 @@ $isLoggedIn = isset($_SESSION["user_id"]);
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<header>
-    <h1>Welcome to My Blog</h1>
+<header class="navbar">
+  <div class="nav-left">
+    <a href="index.php" class="logo">BlogCave</a>
+    <a href="index.php" class="nav-link">Home</a>
+    <a href="pages/my_posts.php" class="nav-link">My Posts</a>
+    <a href="pages/add_post.php" class="nav-link">New Post</a>
+    <a href="pages/logout.php" class="nav-link">Logout</a>
+  </div>
 
-    <div class="nav-buttons">
-        <a href="pages/add_post.php" class="btn">New Post</a>
-        <a href="pages/my_posts.php" class="btn">My Posts</a>
-        <a href="pages/logout.php" class="btn">Logout</a>
-        <?php if (!$isLoggedIn): ?>
-            <a href="pages/login.php" class="btn">Login</a>
-            <a href="pages/register.php" class="btn">Register</a>
-        <?php endif; ?>
-    </div>
-
-    <?php if ($isLoggedIn): ?>
-        <p>Logged in as <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong> 
-        (<?php echo $_SESSION["role"]; ?>)</p>
-    <?php else: ?>
-        <p>You are viewing in <strong>guest mode</strong>. Log in to post or read full articles.</p>
-    <?php endif; ?>
+  <div class="nav-right">
+    <a href="pages/login.php" class="btn-outline">Sign In</a>
+    <a href="pages/register.php" class="btn-filled">Get Started</a>
+  </div>
 </header>
 <hr>
 

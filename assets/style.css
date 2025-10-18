@@ -1,52 +1,156 @@
 /* ---------- General Layout ---------- */
 body {
-  font-family: system-ui, sans-serif;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   margin: 0;
   padding: 2rem;
-  background: #f8f9fa;
-  color: #222;
+  background: #EBF2F2;
+  color: #1a1a1a;
+  line-height: 1.6;
 }
 
-h1, h2 {
-  color: #333;
+h1, h2, h3 {
+  color: #0f172a;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
 }
 
-/* ---------- Header & Links ---------- */
+/* ---------- Links ---------- */
 a {
-  color: #0077cc;
+  color: #006d77;
   text-decoration: none;
 }
 a:hover {
   text-decoration: underline;
+  color: #004c53;
 }
 
-/* ---------- Posts ---------- */
-.post {
-  background: #fff;
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+/* ---------- NAVBAR ---------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 60px;
+  margin: 1rem auto 2rem auto;
+  width: 92%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.post img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 6px;
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #004c53;
+}
+
+.nav-link {
+  color: #2e2e2e;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #007f8b;
+}
+
+/* ---------- Navbar Buttons ---------- */
+.nav-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-outline, .btn-filled {
+  padding: 0.55rem 1.4rem;
+  border-radius: 60px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline {
+  border: 2px solid #007f8b;
+  color: #007f8b;
+  background: transparent;
+}
+.btn-outline:hover {
+  background: #007f8b;
+  color: white;
+}
+
+.btn-filled {
+  background: #5fd788;
+  color: #043b3b;
+  border: none;
+}
+.btn-filled:hover {
+  background: #4ac479;
+  color: white;
+}
+
+/* ---------- Posts Grid ---------- */
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.8rem;
   margin-top: 1rem;
 }
 
-/* ---------- Buttons ---------- */
+.post {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.post img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.post h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  color: #0f172a;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Buttons (in posts) ---------- */
 button, .btn {
-  background: #0077cc;
+  background: #007f8b;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
-  border-radius: 6px;
+  border-radius: 60px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
+
 button:hover, .btn:hover {
-  background: #005fa3;
+  background: #005f68;
 }
 
 /* ---------- Markdown styling ---------- */
@@ -54,7 +158,7 @@ button:hover, .btn:hover {
   margin-top: 1rem;
 }
 .markdown-content p {
-  line-height: 1.6;
+  color: #374151;
   margin: 0.5rem 0;
 }
 .markdown-content strong {
@@ -62,4 +166,19 @@ button:hover, .btn:hover {
 }
 .markdown-content em {
   font-style: italic;
+}
+
+/* ---------- Responsive Adjustments ---------- */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .nav-left {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .posts-container {
+    grid-template-columns: 1fr;
+  }
 }
