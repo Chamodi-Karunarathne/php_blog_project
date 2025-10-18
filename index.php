@@ -22,12 +22,12 @@ $isLoggedIn = isset($_SESSION["user_id"]);
     <h1>Welcome to My Blog</h1>
 
     <div class="nav-buttons">
-        <a href="pages/add_post.php" class="btn">➕ New Post</a>
-        <a href="pages/my_posts.php" class="btn">📝 My Posts</a>
-        <a href="pages/logout.php" class="btn">🚪 Logout</a>
+        <a href="pages/add_post.php" class="btn">New Post</a>
+        <a href="pages/my_posts.php" class="btn">My Posts</a>
+        <a href="pages/logout.php" class="btn">Logout</a>
         <?php if (!$isLoggedIn): ?>
-            <a href="pages/login.php" class="btn">🔑 Login</a>
-            <a href="pages/register.php" class="btn">🧾 Register</a>
+            <a href="pages/login.php" class="btn">Login</a>
+            <a href="pages/register.php" class="btn">Register</a>
         <?php endif; ?>
     </div>
 
