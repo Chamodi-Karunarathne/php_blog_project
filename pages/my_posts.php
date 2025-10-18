@@ -63,6 +63,10 @@ $result = $stmt->get_result();
     <h2>My Posts</h2>
     <p><a href="../index.php">Home</a> | <a href="add_post.php">+ Add New Post</a> | <a href="logout.php">Logout</a></p>
     <hr>
+    <?php if (isset($_SESSION["message"])): ?>
+        <p style="color:green;"><?php echo $_SESSION["message"]; unset($_SESSION["message"]); ?></p>
+    <?php endif; ?>
+
 
     <?php if ($result->num_rows > 0): ?>
         <?php while ($row = $result->fetch_assoc()): ?>
