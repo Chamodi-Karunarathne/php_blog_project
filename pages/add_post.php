@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Add New Post</title>
     <link rel="stylesheet" href="../assets/style.css">
 
-    <!-- SimpleMDE (Markdown Editor) -->
+    <!-- Using a SimpleMDE (Markdown Editor) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 </head>
 <body>
