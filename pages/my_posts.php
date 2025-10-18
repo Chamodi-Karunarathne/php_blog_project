@@ -17,20 +17,21 @@ if ($role === 'admin') {
             FROM posts 
             JOIN users ON posts.user_id = users.id 
             ORDER BY posts.created_at DESC";
+    
+    $result = $conn->query($sql); // direct query, no placeholders
 } else {
-    $sql = "SELECT * FROM posts WHERE user_id = ? ORDER BY created_at DESC";
-}
-
-$stmt = $conn->prepare($sql);
-
-if ($role === 'admin') {
-    $stmt->execute();
-} else {
+    $sql = "SELECT posts.*, users.username
+            FROM posts
+            JOIN users ON posts.user_id = users.id
+            WHERE posts.user_id = ?
+            ORDER BY posts.created_at DESC";
+    
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
+    $result = $stmt->get_result();
 }
 
-$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
