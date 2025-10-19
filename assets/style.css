@@ -63,8 +63,8 @@ a:hover {
 
 .logo {
   font-size: 1.6rem;
-  font-weight: 500;
-  color: #000000;
+  font-weight: 800;
+  color: #043b3b;
 }
 
 
@@ -72,7 +72,7 @@ a:hover {
 .nav-link {
   position: relative;
   color: #1a1a1a;
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
   padding: 0.25rem 0;
   transition: color 0.3s ease;
@@ -112,7 +112,7 @@ a:hover {
   padding: 0.55rem 1.4rem;
   border-radius: 60px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
   transition: all 0.3s ease;
 }
 .btn-outline {
@@ -145,13 +145,13 @@ a:hover {
 
 
 .btn-filled {
-  background: #9fe29efd;
-  color: #043b3b;
+  background: #043b3b;
+  color:  #9fe29efd;
   border: none;
 }
 .btn-filled:hover {
   background: #8ac189fd;
-  color: rgb(0, 0, 0);
+  color: #043b3b;
 }
 
 /* ---------- Posts Grid ---------- */
@@ -197,8 +197,9 @@ a:hover {
 
 /* ---------- Buttons (in posts) ---------- */
 button, .btn {
-  background: #007f8b;
-  color: white;
+  
+  background: #8ac189fd;
+  color: #043b3b;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 60px;
@@ -207,7 +208,10 @@ button, .btn {
 }
 
 button:hover, .btn:hover {
-  background: #005f68;
+  background: #043b3b;
+  color:  #9fe29efd;
+  text-decoration: none;
+  
 }
 
 /* ---------- Markdown styling ---------- */
