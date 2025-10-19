@@ -30,7 +30,7 @@ $isLoggedIn = isset($_SESSION["user_id"]);
               } else {
                   echo '/php_blog_project/assets/default-avatar.png';
               }
-            ?>" alt="Profile">
+          ?>" alt="Profile">
         </div>
       </a>
     <?php endif; ?>

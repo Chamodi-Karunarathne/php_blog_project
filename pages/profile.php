@@ -3,6 +3,10 @@ session_start();
 include '../config.php';
 
 if (!isset($_SESSION["user_id"])) {
+    // Refresh session profile image if updated
+    if ($profile_image) {
+    $_SESSION["profile_image"] = $profile_image;   
+    }
     header("Location: login.php");
     exit;
 }
@@ -36,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = "Profile updated successfully!";
     $stmt->close();
 }
+
 
 // Fetch updated user info
 $sql = "SELECT username, email, display_name, profile_image FROM users WHERE id = ?";

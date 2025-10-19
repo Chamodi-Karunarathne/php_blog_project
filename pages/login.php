@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             $_SESSION["user_id"] = $user["id"];     // Successful login
             $_SESSION["username"] = $user["username"];
+            $_SESSION["profile_image"] = $row["profile_image"];
             $_SESSION["role"] = $user["role"];
 
             header("Location: ../index.php");       // Redirect to homepage
