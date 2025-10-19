@@ -7,6 +7,7 @@ $errors = [];
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST["username"]);
+    $display_name = trim($_POST["display_name"]);
     $email = trim($_POST["email"]);
     $password = $_POST["password"]; // use raw value for validation first
 
@@ -26,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Proceed only if there are no validation errors
     if (empty($errors)) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO users (username, display_name, email, password) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sss", $username, $email, $hashedPassword);
+        $stmt->bind_param("ssss", $username, $display_name, $email, $hashedPassword);
 
         if ($stmt->execute()) {
             $message = "Registration successful!";
@@ -55,6 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="POST" action="">
         <label>Username:</label><br>
         <input type="text" name="username" required><br><br>
+
+        <label>Display Name:</label><br>
+        <input type="text" name="display_name" required><br><br>
 
         <label>Email:</label><br>
         <input type="email" name="email" required><br><br>

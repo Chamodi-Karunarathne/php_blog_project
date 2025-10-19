@@ -9,18 +9,30 @@ $isLoggedIn = isset($_SESSION["user_id"]);
   <div class="nav-left">
     <span class="logo">BlogCave</span>
 
-    <a href="/php_blog_project/index.php" style="text-decoration:none" class="nav-link">Home</a>
-    <a href="/php_blog_project/pages/my_posts.php" style="text-decoration:none" class="nav-link">My Posts</a>
-    <a href="/php_blog_project/pages/add_post.php" style="text-decoration:none" class="nav-link">New Post</a>
+    <a href="/php_blog_project/index.php" class="nav-link">Home</a>
+    <?php if ($isLoggedIn): ?>
+      <a href="/php_blog_project/pages/my_posts.php" class="nav-link">My Posts</a>
+      <a href="/php_blog_project/pages/add_post.php" class="nav-link">New Post</a>
+    <?php endif; ?>
   </div>
 
   <div class="nav-right">
-  <?php if (!isset($_SESSION["user_id"])): ?>
-    <a href="login.php" class="btn-outline">Sign In</a>
-    <a href="register.php" class="btn-filled">Get Started</a>
-  <?php else: ?>
-    <a href="pages/logout.php" style="text-decoration:none" class="btn-logout">Logout</a>
-  <?php endif; ?>
-</div>
+    <?php if (!$isLoggedIn): ?>
+      <a href="/php_blog_project/pages/login.php" class="btn-outline">Sign In</a>
+      <a href="/php_blog_project/pages/register.php" class="btn-filled">Get Started</a>
+    <?php else: ?>
+      <a href="/php_blog_project/pages/logout.php" class="btn-logout">Logout</a>
+      <a href="/php_blog_project/pages/profile.php" class="nav-profile-link">
+        <div class="nav-profile-pic">
+          <img src="<?php 
+              if (!empty($_SESSION['profile_image'])) {
+                  echo '/php_blog_project/uploads/' . htmlspecialchars($_SESSION['profile_image']);
+              } else {
+                  echo '/php_blog_project/assets/default-avatar.png';
+              }
+            ?>" alt="Profile">
+        </div>
+      </a>
+    <?php endif; ?>
+  </div>
 </header>
- 
