@@ -100,4 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 </body>
+<?php include '../components/footer.php'; ?>
+
 </html>

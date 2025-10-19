@@ -19,7 +19,7 @@ $isLoggedIn = isset($_SESSION["user_id"]);
 </head>
 <body>
 <?php include 'components/navbar.php'; ?>
-<hr>
+<main>
 
 <div class="posts-container">
 <?php while ($row = $result->fetch_assoc()): ?>
@@ -48,6 +48,7 @@ $isLoggedIn = isset($_SESSION["user_id"]);
     </div>
 <?php endwhile; ?>
 </div>
+</main>
 
 <!-- Markdown Rendering -->
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
@@ -60,5 +61,7 @@ $isLoggedIn = isset($_SESSION["user_id"]);
       div.innerHTML = html;
   });
 </script>
+<?php include 'components/footer.php'; ?>
+
 </body>
 </html>

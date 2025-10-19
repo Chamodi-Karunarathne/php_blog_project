@@ -33,8 +33,7 @@ if (!$post) {
 <?php include '../components/navbar.php'; ?>
 
 <body>
-<hr>
-
+<main>
 <div class="post">
     <h1><?php echo htmlspecialchars($post['title']); ?></h1>
     <p class="meta">
@@ -50,12 +49,14 @@ if (!$post) {
          data-content="<?php echo htmlspecialchars($post['content'], ENT_QUOTES); ?>">
     </div>
 </div>
-
+</main>
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
 <script>
   const converter = new showdown.Converter({ emoji: true });
   const div = document.querySelector(".markdown-content");
   div.innerHTML = converter.makeHtml(div.getAttribute("data-content"));
 </script>
+<?php include '../components/footer.php'; ?>
+
 </body>
 </html>
