@@ -30,20 +30,8 @@ if (!$post) {
     <title><?php echo htmlspecialchars($post['title']); ?></title>
     <link rel="stylesheet" href="../assets/style.css">
 </head>
-<header class="navbar">
-  <div class="nav-left">
-    <a href="../index.php" class="logo">BlogCave</a>
-    <a href="../index.php" class="nav-link">Home</a>
-    <a href="my_posts.php" class="nav-link">My Posts</a>
-    <a href="add_post.php" class="nav-link">New Post</a>
-    <a href="logout.php" class="nav-link">Logout</a>
-  </div>
+<?php include '../components/navbar.php'; ?>
 
-  <div class="nav-right">
-    <a href="login.php" class="btn-outline">Sign In</a>
-    <a href="register.php" class="btn-filled">Get Started</a>
-  </div>
-</header>
 <body>
 <hr>
 

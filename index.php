@@ -18,20 +18,7 @@ $isLoggedIn = isset($_SESSION["user_id"]);
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<header class="navbar">
-  <div class="nav-left">
-    <a href="index.php" class="logo">BlogCave</a>
-    <a href="index.php" class="nav-link">Home</a>
-    <a href="pages/my_posts.php" class="nav-link">My Posts</a>
-    <a href="pages/add_post.php" class="nav-link">New Post</a>
-    <a href="pages/logout.php" class="nav-link">Logout</a>
-  </div>
-
-  <div class="nav-right">
-    <a href="pages/login.php" class="btn-outline">Sign In</a>
-    <a href="pages/register.php" class="btn-filled">Get Started</a>
-  </div>
-</header>
+<?php include 'components/navbar.php'; ?>
 <hr>
 
 <div class="posts-container">

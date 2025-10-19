@@ -60,6 +60,7 @@ if ($role === 'admin') {
         }
     </style>
 </head>
+<?php include '../components/navbar.php'; ?>
 <body>
     <h2>My Posts</h2>
     <p><a href="../index.php">Home</a> | <a href="add_post.php">+ Add New Post</a> | <a href="logout.php">Logout</a></p>

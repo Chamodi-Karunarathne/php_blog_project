@@ -57,6 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Using a SimpleMDE (Markdown Editor) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 </head>
+<?php include '../components/navbar.php'; ?>
+
 <body>
     <h2>Add a New Post</h2>
     <p style="color:green;"><?php echo $message; ?></p>
