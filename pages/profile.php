@@ -3,13 +3,10 @@ session_start();
 include '../config.php';
 
 if (!isset($_SESSION["user_id"])) {
-    // Refresh session profile image if updated
-    if ($profile_image) {
-    $_SESSION["profile_image"] = $profile_image;   
-    }
     header("Location: login.php");
     exit;
 }
+
 
 $user_id = $_SESSION["user_id"];
 $message = "";
@@ -36,9 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssi", $display_name, $profile_image, $user_id);
     $stmt->execute();
+    $stmt->close();
+
+     if ($profile_image) {
+        $_SESSION["profile_image"] = $profile_image;
+    }
 
     $message = "Profile updated successfully!";
-    $stmt->close();
+    
 }
 
 
