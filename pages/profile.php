@@ -84,14 +84,12 @@ $stmt->close();
     </div>
 
     <form method="POST" enctype="multipart/form-data">
+        <label>Change Profile Picture:</label><br>
+      <input type="file" name="profile_image" accept="image/*"><br><br>
       <label>Display Name:</label><br>
       <input type="text" name="display_name" 
              value="<?php echo htmlspecialchars($user['display_name']); ?>" 
              required><br><br>
-
-      <label>Change Profile Picture:</label><br>
-      <input type="file" name="profile_image" accept="image/*"><br><br>
-
       <p><strong>Username:</strong> <?php echo htmlspecialchars($user['username']); ?></p>
       <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
 
