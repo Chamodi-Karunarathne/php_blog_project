@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetDir . $profile_image);
     }
 
-    // Update profile (keep old image if not updated)
+    // Update profile when image changes
     $sql = "UPDATE users 
             SET display_name = ?, 
                 profile_image = IFNULL(?, profile_image)
