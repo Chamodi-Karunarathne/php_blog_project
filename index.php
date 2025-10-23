@@ -42,11 +42,12 @@ $isLoggedIn = isset($_SESSION["user_id"]);
             <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Post image">
         <?php endif; ?>
 
+        <!-- Like Button Component -->
+        <?php $post_id = $row['id']; include 'components/like_button.php'; ?>
+
         <a href="<?php echo $isLoggedIn ? 'pages/view_post.php?id=' . $row['id'] : 'pages/login.php'; ?>" class="btn">
             Read More →
         </a>
-        <!-- Like Button Component -->
-        <?php $post_id = $row['id']; include 'components/like_button.php'; ?>
 
     </div>
 <?php endwhile; ?>
@@ -91,6 +92,7 @@ document.querySelectorAll('.like-btn').forEach(btn => {
 });
 </script>
 
+<?php include 'components/like_script.php'; ?>
 <?php include 'components/footer.php'; ?>
 
 </body>

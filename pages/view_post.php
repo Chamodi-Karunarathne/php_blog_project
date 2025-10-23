@@ -50,6 +50,7 @@ if (!$post) {
     </div>
     <!-- Like Button Component -->
         <?php $post_id = $post['id']; include '../components/like_button.php'; ?>
+
 </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
@@ -58,6 +59,8 @@ if (!$post) {
   const div = document.querySelector(".markdown-content");
   div.innerHTML = converter.makeHtml(div.getAttribute("data-content"));
 </script>
+
+<?php include '../components/like_script.php'; ?>
 <?php include '../components/footer.php'; ?>
 
 </body>
