@@ -407,3 +407,39 @@ button:hover, .btn:hover {
   font-weight: 500;
   color: #333;
 }
+
+
+/* ---------- Top Liked Side Bar ---------- */
+/* === HOME LAYOUT FOR SIDEBAR === */
+.home-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.main-content {
+  flex: 3;
+}
+
+.sidebar {
+  flex: 1;
+  background: #f9fdfd;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: sticky;
+  top: 80px;
+}
+
+@media (max-width: 900px) {
+  .home-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    order: -1;
+    width: 100%;
+  }
+}

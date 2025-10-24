@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'config.php';
+//include 'components/top_liked.php';     // Include top liked posts
 
 // Fetch all posts for public view
 $sql = "SELECT posts.*, users.username 
@@ -11,6 +12,8 @@ $result = $conn->query($sql);
 
 $isLoggedIn = isset($_SESSION["user_id"]);
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,39 +22,47 @@ $isLoggedIn = isset($_SESSION["user_id"]);
 </head>
 <body>
 <?php include 'components/navbar.php'; ?>
-<main>
+<main class="home-layout">
 
-<div class="posts-container">
-<?php while ($row = $result->fetch_assoc()): ?>
-    <div class="post">
-        <h2>
-            <a href="<?php echo $isLoggedIn ? 'pages/view_post.php?id=' . $row['id'] : 'pages/login.php'; ?>">
-                <?php echo htmlspecialchars($row['title']); ?>
-            </a>
-        </h2>
-        <p class="meta">
-            Posted by <strong><?php echo htmlspecialchars($row['username']); ?></strong>
-            on <?php echo date('M j, Y', strtotime($row['created_at'])); ?>
-        </p>
+    <div class="main-content">
 
-        <div class="markdown-content" 
-             data-content="<?php echo htmlspecialchars($row['content'], ENT_QUOTES); ?>">
-        </div>
+        <div class="posts-container">
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <div class="post">
+                    <h2>
+                        <a href="<?php echo $isLoggedIn ? 'pages/view_post.php?id=' . $row['id'] : 'pages/login.php'; ?>">
+                            <?php echo htmlspecialchars($row['title']); ?>
+                        </a>
+                    </h2>
+                    <p class="meta">
+                        Posted by <strong><?php echo htmlspecialchars($row['username']); ?></strong>
+                        on <?php echo date('M j, Y', strtotime($row['created_at'])); ?>
+                    </p>
 
-        <?php if (!empty($row['image'])): ?>
-            <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Post image">
-        <?php endif; ?>
+                    <div class="markdown-content" 
+                        data-content="<?php echo htmlspecialchars($row['content'], ENT_QUOTES); ?>">
+                    </div>
 
-        <!-- Like Button Component -->
-        <?php $post_id = $row['id']; include 'components/like_button.php'; ?>
+                    <?php if (!empty($row['image'])): ?>
+                        <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Post image">
+                    <?php endif; ?>
 
-        <a href="<?php echo $isLoggedIn ? 'pages/view_post.php?id=' . $row['id'] : 'pages/login.php'; ?>" class="btn">
-            Read More →
-        </a>
+                    <!-- Like Button Component -->
+                    <?php $post_id = $row['id']; include 'components/like_button.php'; ?>
 
-    </div>
-<?php endwhile; ?>
-</div>
+                    <a href="<?php echo $isLoggedIn ? 'pages/view_post.php?id=' . $row['id'] : 'pages/login.php'; ?>" class="btn">
+                        Read More →
+                    </a>
+
+                </div>
+            <?php endwhile; ?>
+        </div> <!-- end of posts-container -->
+    </div> <!-- end of main-content -->
+
+    <aside class="sidebar">
+        <?php include 'components/top_liked.php'; ?>
+    </aside>
+
 </main>
 
 <!-- Markdown Rendering -->
