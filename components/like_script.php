@@ -6,7 +6,7 @@ document.querySelectorAll('.like-btn').forEach(btn => {
     const heart = section.querySelector('.heart');
     const countSpan = section.querySelector('.like-count');
 
-    fetch('pages/like_post.php', {
+    fetch(window.location.pathname.includes('/pages/') ? 'like_posts.php' : 'pages/like_posts.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: 'post_id=' + postId
@@ -23,4 +23,5 @@ document.querySelectorAll('.like-btn').forEach(btn => {
     .catch(err => console.error('Error:', err));
   });
 });
+
 </script>
