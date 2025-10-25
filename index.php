@@ -25,7 +25,7 @@ $isLoggedIn = isset($_SESSION["user_id"]);
 <main class="home-layout">
 
     <div class="main-content">
-
+        <?php include 'components/top_liked.php'; ?>
         <div class="posts-container">
             <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="post">
@@ -58,10 +58,6 @@ $isLoggedIn = isset($_SESSION["user_id"]);
             <?php endwhile; ?>
         </div> <!-- end of posts-container -->
     </div> <!-- end of main-content -->
-
-    <aside class="sidebar">
-        <?php include 'components/top_liked.php'; ?>
-    </aside>
 
 </main>
 

@@ -1,20 +1,20 @@
 /* ---------- General Layout ---------- */
 body {
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
-  margin: 0;
   padding: 2rem;
   background: #EBF2F2;
   color: #1a1a1a;
   line-height: 1.6;
+  min-height: 100%;
+  overflow-x: hidden;
 }
-
-/* ---------- Page Layout (for sticky footer) ---------- */
 html, body {
   height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
 }
+
 .nav-link, 
 .btn-outline, 
 .btn-filled, 
@@ -298,17 +298,17 @@ button:hover, .btn:hover {
 
 /* ---------- Footer ---------- */
 .footer {
-  background: #062c2c;
-  color: #fffffffd;
+  background: rgba(6, 44, 44, 0.95); /* same color, slight transparency */
+  color: #e5e5e5;
   text-align: center;
   padding: 1.5rem 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   font-size: 0.95rem;
   letter-spacing: 0.3px;
-  margin-top: 2rem; 
-  width: 100vw;            
-  position: relative;      
+  margin-top: 2rem;        /* small space from content above */
+  width: 100vw;            /* ensure full browser width */
+  position: relative;      /* keep layout stable */
   left: 50%;
   transform: translateX(-50%);
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
@@ -409,37 +409,100 @@ button:hover, .btn:hover {
 }
 
 
-/* ---------- Top Liked Side Bar ---------- */
-/* === HOME LAYOUT FOR SIDEBAR === */
+/* Sidebar & carousel layout */
 .home-layout {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-  padding: 2rem;
+  display: block;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 0 0 3rem;
 }
 
 .main-content {
-  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
-.sidebar {
-  flex: 1;
-  background: #f9fdfd;
-  border-radius: 12px;
-  padding: 1.2rem;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-  max-height: 90vh;
-  overflow-y: auto;
-  position: sticky;
-  top: 80px;
+/* --- Most liked carousel wrapper --- */
+.top-liked {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.8rem 3rem;
+  border-radius: 36px;
+  background: linear-gradient(145deg, #f4fbfb 0%, #ffffff 65%);
+  box-shadow: 0 32px 60px rgba(7, 84, 84, 0.14);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-@media (max-width: 900px) {
-  .home-layout {
-    flex-direction: column;
+/* Track stays inside the box, page doesn’t scroll */
+.top-liked .slider {
+  display: flex;
+  gap: 2.4rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 2rem;
+  padding-bottom: 1.4rem;
+  margin: 0;
+}
+
+.top-liked .slider::-webkit-scrollbar {
+  height: 6px;
+}
+
+.top-liked .slider::-webkit-scrollbar-thumb {
+  background: rgba(15, 76, 74, 0.45);
+  border-radius: 999px;
+}
+
+/* Card width matches Gynger layout but stays inside wrapper */
+.top-liked .slide {
+  flex: 0 0 clamp(320px, 64vw, 640px);
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 6fr);
+  gap: 2.4rem;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 28px;
+  padding: 2.4rem;
+  box-shadow: 0 24px 45px rgba(4, 59, 59, 0.14);
+  scroll-snap-align: start;
+  box-sizing: border-box;
+}
+
+.top-liked .slide.no-image {
+  grid-template-columns: 1fr;
+}
+
+.top-liked .slide-cover {
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.top-liked .slide-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .top-liked {
+    padding: 2.2rem 2.2rem;
   }
-  .sidebar {
-    order: -1;
-    width: 100%;
+  .top-liked .slide {
+    flex: 0 0 calc(100% - 2rem);
+    grid-template-columns: 1fr;
   }
+  .top-liked .slide-cover {
+    height: 220px;
+  }
+}
+
+/* Ensure the standard post grid stays inside page width */
+.posts-container {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
