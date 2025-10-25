@@ -8,8 +8,8 @@ $isLoggedIn = isset($_SESSION["user_id"]);
 <header class="navbar">
   <div class="nav-left">
     <span class="logo">BlogCave</span>
-
-    <a href="/php_blog_project/index.php" class="nav-link">Home</a>
+    
+    <a href="/php_blog_project/index.php" class="nav-link"> Home</a>
     <?php if ($isLoggedIn): ?>
       <a href="/php_blog_project/pages/my_posts.php" class="nav-link">My Posts</a>
       <a href="/php_blog_project/pages/add_post.php" class="nav-link">New Post</a>
