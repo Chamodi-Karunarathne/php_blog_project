@@ -487,6 +487,29 @@ button:hover, .btn:hover {
   display: block;
 }
 
+.slide-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.slide-likes-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(10, 61, 61, 0.08);
+  color: #0f4c4a;
+}
+
+.slide-heart {
+  font-size: 1rem;
+  color: #e74c3c;
+}
+/*Responsive*/
+
 @media (max-width: 1024px) {
   .top-liked {
     padding: 2.2rem 2.2rem;
@@ -500,9 +523,11 @@ button:hover, .btn:hover {
   }
 }
 
+
 /* Ensure the standard post grid stays inside page width */
 .posts-container {
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
+

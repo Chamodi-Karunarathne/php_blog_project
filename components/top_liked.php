@@ -15,7 +15,7 @@ $isLoggedIn = isset($_SESSION["user_id"]);
 <section class="top-liked">
   <div class="top-liked__header">
     <span class="top-liked__label">Top picks this week</span>
-    <h2>🔥 Most Liked Articles</h2>
+    <h2>Most Liked Articles</h2>
   </div>
 
   <div class="slider" role="list">
@@ -54,7 +54,10 @@ $isLoggedIn = isset($_SESSION["user_id"]);
             <span class="slide-date"><?php echo htmlspecialchars($postedAt); ?></span>
           </div>
           <div class="slide-footer">
-            <span class="slide-likes">❤️ <?php echo $post['total_likes']; ?> likes</span>
+            <span class="slide-likes-chip">
+              <span class="slide-heart">&#x2764;</span>
+              <?php echo $post['total_likes']; ?> likes
+            </span>
             <a class="slide-link" href="<?php echo $link; ?>">Read article →</a>
           </div>
         </div>

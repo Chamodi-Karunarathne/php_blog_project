@@ -33,7 +33,6 @@ if ($res && $res->num_rows > 0) {
     $liked = false;
 } else {
     // Like
-    //$ins = $conn->prepare("INSERT INTO likes (user_id, post_id) VALUES (?, ?)");
     $ins = $conn->prepare("INSERT IGNORE INTO likes (user_id, post_id) VALUES (?, ?)");
     $ins->bind_param("ii", $user_id, $post_id);
     if (!$ins->execute()) {
