@@ -44,29 +44,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>User Registration</title>
-    <link rel="stylesheet" href="../assets/style.css"> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Blog</title>
+  <link rel="stylesheet" href="../assets/auth.css">
 </head>
 <body>
-    <h2>Register</h2>
-    <p style="color: red;"><?php echo $message; ?></p>
+
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Create an Account</h2>
+    <?php if (!empty($message)): ?>
+      <p class="error-msg"><?php echo $message; ?></p>
+    <?php endif; ?>
 
     <form method="POST" action="">
-        <label>Username:</label><br>
-        <input type="text" name="username" required><br><br>
+      <label>Username</label>
+      <input type="text" name="username" placeholder="Your username" required>
 
-        <label>Display Name:</label><br>
-        <input type="text" name="display_name" required><br><br>
+      <label>Display Name</label>
+      <input type="text" name="display_name" placeholder="Your display name" required>
 
-        <label>Email:</label><br>
-        <input type="email" name="email" required><br><br>
+      <label>Email</label>
+      <input type="email" name="email" placeholder="example@domain.com" required>
 
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Create a password" required>
 
-        <button type="submit">Register</button>
+      <button type="submit">Register</button>
     </form>
+
+    <div class="auth-links">
+      <a href="login.php">Already have an account? <strong>Login</strong></a>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

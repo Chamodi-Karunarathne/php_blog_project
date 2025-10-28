@@ -37,24 +37,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 ?>
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Login</title>
-  <link rel="stylesheet" href="../assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Blog</title>
+  <link rel="stylesheet" href="../assets/auth.css">
 </head>
 <body>
-  <h2>Login</h2>
-  <p style="color: red;"><?php echo $message; ?></p>
 
-  <form method="POST" action="">
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Sign in to Your Account</h2>
+    <?php if (!empty($message)): ?>
+      <p class="error-msg"><?php echo $message; ?></p>
+    <?php endif; ?>
 
-    <label>Password:</label><br>
-    <input type="password" name="password" required><br><br>
+    <form method="POST" action="">
+      <label>Email</label>
+      <input type="email" name="email" placeholder="example@domain.com" required>
 
-    <button type="submit">Login</button>
-  </form>
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Enter your password" required>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="auth-links">
+      <a href="register.php">Don’t have an account? <strong>Register</strong></a>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
