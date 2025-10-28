@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ssss", $username, $display_name, $email, $hashedPassword);
 
         if ($stmt->execute()) {
-            $message = "Registration successful!";
+            header("Location: ../index.php");
         } else {
             $message = "Error: " . $stmt->error;
         }
