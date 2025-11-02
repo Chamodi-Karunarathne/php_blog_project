@@ -2,6 +2,7 @@
 body {
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   padding: 2rem;
+  padding-top: 1rem;
   background: #EBF2F2;
   color: #1a1a1a;
   line-height: 1.6;
