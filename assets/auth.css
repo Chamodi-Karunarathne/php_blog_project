@@ -1,12 +1,62 @@
 /* Background layout */
+/* Background animation for auth pages */
 body {
   margin: 0;
   font-family: "Inter", system-ui, sans-serif;
-  background: linear-gradient(45deg, #042322 0%, #082F2D 50%, #0D403D 100%);
+  background: linear-gradient(
+    315deg,
+    #085353 0%,
+    #063838 25%,
+    #073131 50%,
+    #032C2C 75%,
+    #032525 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient 25s ease infinite;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Wave overlay effect */
+.wave {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius:45% 55% 0 0 / 20% 30% 0 0;
+  position: fixed;
+  width: 200%;
+  height: 15em;
+  animation: wave 10s -3s linear infinite;
+  transform: translate3d(0, 0, 0);
+  opacity: 0.7;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.wave:nth-of-type(2) {
+  bottom: -1.25em;
+  animation: wave 18s linear reverse infinite;
+  opacity: 0.7;
+}
+
+.wave:nth-of-type(3) {
+  bottom: -2.5em;
+  animation: wave 20s -1s reverse infinite;
+  opacity: 0.8;
+}
+
+@keyframes wave {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
 }
 
 /* Auth container */
@@ -20,12 +70,21 @@ body {
 
 /* Card style */
 .auth-card {
-  background: #ffffffb7;
+  /*background: #ffffffb7;
   padding: 2rem 3rem;
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   max-width: 400px;
+  width: 100%;*/
+  background: rgba(255, 255, 255, 0.527);
+  backdrop-filter: blur(8px);
+  padding: 2.8rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
   width: 100%;
+  position: relative;
+  z-index: 1; /* keeps it above the waves */
 }
 
 .auth-card h2 {

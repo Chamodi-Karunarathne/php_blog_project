@@ -52,7 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="../assets/auth.css">
 </head>
 <body>
-
+<div class="wave"></div>
+<div class="wave"></div>
+<div class="wave"></div>
 <div class="auth-container">
   <div class="auth-card">
     <h2>Create an Account</h2>
