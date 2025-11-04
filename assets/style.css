@@ -161,7 +161,7 @@ button:hover, .btn:hover {
   height: 140px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid var(--accent--mid);
+  /*border: 3px solid var(--accent--mid);*/
   margin-bottom: 1rem;
 }
 
@@ -390,5 +390,40 @@ button:hover, .btn:hover {
 .post-form-container button:hover {
   background: #8ac189fd;
   color: #043b3b;
+}
+
+/* ---------- Actions Button Styles ---------- */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.4rem;
+  border-radius: 60px;
+  font-weight: 500;
+  background: #8ac189fd;
+  color: #043b3b;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.action-btn:hover {
+  background: #043b3b;
+  color: #f5f5f5fd;
+  text-decoration: none;
+}
+
+.delete-action {
+  background: #ad2617;
+  color: #fff;
+}
+
+.delete-action:hover {
+  background: #6d2017;
+  color: #fff;
 }
 

@@ -63,12 +63,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Edit Post</title>
     <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="/php_blog_project/assets/nav.css">
+    <link rel="stylesheet" href="/php_blog_project/assets/footer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 </head>
 <?php include '../components/navbar.php'; ?>
 
 <body>
-<h1>Edit Post</h1>
 <p style="color:red;"><?php echo $message; ?></p>
 
 <form method="POST" enctype="multipart/form-data">

@@ -63,7 +63,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php include '../components/navbar.php'; ?>
 
 <body>
-    <h2>Add a New Post</h2>
     <p style="color:green;"><?php echo $message; ?></p>
 
     <form method="POST" action="add_post.php" enctype="multipart/form-data">
