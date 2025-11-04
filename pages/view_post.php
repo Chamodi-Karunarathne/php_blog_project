@@ -28,11 +28,12 @@ if (!$post) {
 <html>
 <head>
     <title><?php echo htmlspecialchars($post['title']); ?></title>
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="/php_blog_project/assets/style.css">
+    <link rel="stylesheet" href="/php_blog_project/assets/nav.css">
+    <link rel="stylesheet" href="/php_blog_project/assets/footer.css">
 </head>
-<?php include '../components/navbar.php'; ?>
-
 <body>
+<?php include '../components/navbar.php'; ?>
 <main>
 <div class="post">
     <h1><?php echo htmlspecialchars($post['title']); ?></h1>

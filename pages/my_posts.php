@@ -38,30 +38,12 @@ if ($role === 'admin') {
 <html>
 <head>
     <title>My Posts</title>
-    <link rel="stylesheet" href="../assets/style.css">
-    <style>
-        .post {
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 15px;
-        }
-        .actions {
-            margin-top: 10px;
-        }
-        .actions a {
-            text-decoration: none;
-            margin-right: 10px;
-            color: #007bff;
-        }
-        .actions a.delete {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="/php_blog_project/assets/style.css">
+    <link rel="stylesheet" href="/php_blog_project/assets/nav.css">
+    <link rel="stylesheet" href="/php_blog_project/assets/footer.css">
 </head>
-<?php include '../components/navbar.php'; ?>
 <body>
+    <?php include '../components/navbar.php'; ?>
     <h2>My Posts</h2>
     <?php if (isset($_SESSION["message"])): ?>
         <p style="color:green;"><?php echo $_SESSION["message"]; unset($_SESSION["message"]); ?></p>
@@ -89,6 +71,7 @@ if ($role === 'admin') {
     <?php else: ?>
         <p>You haven’t created any posts yet.</p>
     <?php endif; ?>
+    
     <!-- Include Showdown.js for Markdown rendering -->
     <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
     <script>

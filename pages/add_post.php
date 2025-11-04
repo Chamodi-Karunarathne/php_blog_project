@@ -53,9 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Add New Post</title>
     <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="/php_blog_project/assets/nav.css">
+    <link rel="stylesheet" href="/php_blog_project/assets/footer.css">
 
     <!-- Using a SimpleMDE (Markdown Editor) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    
 </head>
 <?php include '../components/navbar.php'; ?>
 
