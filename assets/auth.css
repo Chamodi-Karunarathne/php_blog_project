@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: "Inter", system-ui, sans-serif;
-  background: linear-gradient(315deg, #073131 0%, #032C2C 40%, #032525 100%);
+  background: linear-gradient(315deg, #004147 0%, #013439 40%, #021a1a 100%);
   background-size: 400% 400%;
   animation: gradient 25s ease infinite;
   min-height: 100vh;
@@ -54,7 +54,7 @@ body {
 }
 
 .firefly::before {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.01);
 }
 
 .firefly::after {
