@@ -1,90 +1,134 @@
-/* Background layout */
-/* Background animation for auth pages */
+/* ---------- Background Animation for Auth Pages ---------- */
 body {
   margin: 0;
   font-family: "Inter", system-ui, sans-serif;
-  background: linear-gradient(
-    315deg,
-    #085353 0%,
-    #063838 25%,
-    #073131 50%,
-    #032C2C 75%,
-    #032525 100%
-  );
+  background: linear-gradient(315deg, #073131 0%, #032C2C 40%, #032525 100%);
   background-size: 400% 400%;
   animation: gradient 25s ease infinite;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  justify-content: flex-start; /* Keeps content top-centered */
+  overflow-x: hidden;          /* Allow vertical scroll */
+  position: relative;
 }
 
+/* Keep gradient flowing */
 @keyframes gradient {
   0% { background-position: 0% 0%; }
   50% { background-position: 100% 100%; }
   100% { background-position: 0% 0%; }
 }
 
-/* Wave overlay effect */
-.wave {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius:45% 55% 0 0 / 20% 30% 0 0;
-  position: fixed;
-  width: 200%;
-  height: 15em;
-  animation: wave 10s -3s linear infinite;
-  transform: translate3d(0, 0, 0);
-  opacity: 0.7;
-  bottom: 0;
-  left: 0;
+/* ---------- Firefly Animation (Improved Random Start + Faster Motion) ---------- */
+.firefly {
+  position: absolute;
+  width: 0.4vw;
+  height: 0.4vw;
+  pointer-events: none;
   z-index: 0;
+  animation: move 80s ease-in-out infinite;
 }
 
-.wave:nth-of-type(2) {
-  bottom: -1.25em;
-  animation: wave 18s linear reverse infinite;
-  opacity: 0.7;
+/* Random starting positions */
+.firefly:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+.firefly:nth-child(2) { top: 25%; left: 70%; animation-delay: 5s; }
+.firefly:nth-child(3) { top: 60%; left: 20%; animation-delay: 10s; }
+.firefly:nth-child(4) { top: 75%; left: 50%; animation-delay: 2s; }
+.firefly:nth-child(5) { top: 40%; left: 80%; animation-delay: 8s; }
+.firefly:nth-child(6) { top: 85%; left: 30%; animation-delay: 4s; }
+.firefly:nth-child(7) { top: 20%; left: 40%; animation-delay: 6s; }
+.firefly:nth-child(8) { top: 55%; left: 60%; animation-delay: 3s; }
+.firefly:nth-child(9) { top: 15%; left: 85%; animation-delay: 7s; }
+.firefly:nth-child(10){ top: 65%; left: 10%; animation-delay: 9s; }
+
+.firefly::before,
+.firefly::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-origin: -10vw;
 }
 
-.wave:nth-of-type(3) {
-  bottom: -2.5em;
-  animation: wave 20s -1s reverse infinite;
-  opacity: 0.8;
+.firefly::before {
+  background: rgba(0, 0, 0, 0.3);
 }
 
-@keyframes wave {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
+.firefly::after {
+  background: radial-gradient(circle, #8AC189 0%, transparent 70%);
+  opacity: 0;
+  box-shadow: 0 0 0vw 0vw #8AC189;
 }
 
-/* Auth container */
+/* Slightly quicker motion path */
+@keyframes move {
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(10vw, -10vh) scale(1.2); }
+  50%  { transform: translate(-12vw, 15vh) scale(0.9); }
+  75%  { transform: translate(8vw, 10vh) scale(1.1); }
+  100% { transform: translate(-8vw, -12vh) scale(1); }
+}
+
+
+@keyframes rotate {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes flash {
+  0%, 25%, 100% { opacity: 0; box-shadow: 0 0 0vw 0vw #8AC189; }
+  10% { opacity: 1; box-shadow: 0 0 1.8vw 0.3vw #BAC6C5; }
+  20% { opacity: 0.6; box-shadow: 0 0 1vw 0.2vw #8AC189; }
+}
+
+/* Random motion for each */
+.firefly:nth-child(1)  { animation: move 180s ease-in-out infinite; }
+.firefly:nth-child(1)::after { animation: rotate 12s linear infinite, flash 7s ease-in-out infinite; }
+.firefly:nth-child(2)  { animation: move 240s ease-in-out infinite 10s; }
+.firefly:nth-child(2)::after { animation: rotate 9s linear infinite, flash 5.5s ease-in-out infinite 1s; }
+.firefly:nth-child(3)  { animation: move 200s ease-in-out infinite 25s; }
+.firefly:nth-child(3)::after { animation: rotate 11s linear infinite, flash 8s ease-in-out infinite 2s; }
+.firefly:nth-child(4)  { animation: move 220s ease-in-out infinite 18s; }
+.firefly:nth-child(4)::after { animation: rotate 14s linear infinite, flash 6.2s ease-in-out infinite 3s; }
+.firefly:nth-child(5)  { animation: move 250s ease-in-out infinite 5s; }
+.firefly:nth-child(5)::after { animation: rotate 10s linear infinite, flash 9s ease-in-out infinite 2.5s; }
+.firefly:nth-child(6)  { animation: move 260s ease-in-out infinite 40s; }
+.firefly:nth-child(6)::after { animation: rotate 15s linear infinite, flash 5.8s ease-in-out infinite 4s; }
+.firefly:nth-child(7)  { animation: move 230s ease-in-out infinite 15s; }
+.firefly:nth-child(7)::after { animation: rotate 8s linear infinite, flash 7.5s ease-in-out infinite 2s; }
+.firefly:nth-child(8)  { animation: move 210s ease-in-out infinite 35s; }
+.firefly:nth-child(8)::after { animation: rotate 13s linear infinite, flash 6.8s ease-in-out infinite 1.5s; }
+.firefly:nth-child(9)  { animation: move 270s ease-in-out infinite 50s; }
+.firefly:nth-child(9)::after { animation: rotate 16s linear infinite, flash 10s ease-in-out infinite 0.5s; }
+.firefly:nth-child(10) { animation: move 190s ease-in-out infinite 20s; }
+.firefly:nth-child(10)::after { animation: rotate 9s linear infinite, flash 5.9s ease-in-out infinite 3s; }
+
+/* ---------- Auth Container ---------- */
 .auth-container {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   padding: 1rem;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
-/* Card style */
+/* ---------- Card Style ---------- */
 .auth-card {
-  /*background: #ffffffb7;
-  padding: 2rem 3rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  width: 100%;*/
-  background: rgba(255, 255, 255, 0.527);
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(8px);
-  padding: 2.8rem 3rem;
+  padding: 1rem 3rem;
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   width: 100%;
   position: relative;
-  z-index: 1; /* keeps it above the waves */
+  z-index: 2;
 }
 
 .auth-card h2 {
@@ -94,7 +138,7 @@ body {
   font-weight: 600;
 }
 
-/* Error message */
+/* ---------- Error Message ---------- */
 .error-msg {
   color: #043b3b;
   text-align: center;
@@ -105,7 +149,7 @@ body {
   font-size: 0.95rem;
 }
 
-/* Form fields */
+/* ---------- Form Fields ---------- */
 form {
   display: flex;
   flex-direction: column;
@@ -127,7 +171,7 @@ input[type="text"] {
   border: 1px solid #cbd5e1;
   font-size: 1rem;
   transition: border-color 0.25s ease;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 input:focus {
@@ -135,7 +179,7 @@ input:focus {
   outline: none;
 }
 
-/* Button */
+/* ---------- Buttons ---------- */
 button {
   background: #043b3b;
   color: #fff;
@@ -152,7 +196,7 @@ button:hover {
   background: #043b3bae;
 }
 
-/* Links */
+/* ---------- Links ---------- */
 .auth-links {
   text-align: center;
   margin-top: 1.5rem;
@@ -172,7 +216,7 @@ button:hover {
   text-decoration: underline;
 }
 
-/* Responsive */
+/* ---------- Responsive ---------- */
 @media (max-width: 480px) {
   .auth-card {
     padding: 2rem;
