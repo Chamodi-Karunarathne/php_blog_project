@@ -114,8 +114,8 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 1rem;
-  height: 100vh;
+  padding: clamp(3rem, 8vw, 5rem) 1.5rem;
+  min-height: 100vh;
   position: relative;
   z-index: 1;
 }
@@ -152,7 +152,7 @@ body {
   padding: 0.6rem 1rem;
   margin-bottom: 1rem;
   font-size: 0.95rem;
-  box-shadow: 0 12px 28px #BAC6C5;
+  box-shadow: 0 12px 28px #bac6c58a;
 }
 
 /* ---------- Form Fields ---------- */
