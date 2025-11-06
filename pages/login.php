@@ -76,6 +76,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <button type="submit">Login</button>
     </form>
 
+    <div class="auth-guest">
+      <a class="auth-ghost-btn" href="../index.php">
+        <span aria-hidden="true" class="auth-ghost-btn__icon">&#8592;</span>
+        Continue as Guest
+      </a>
+    </div>
+
     <div class="auth-links">
       <a href="register.php">Don’t have an account? <strong>Register</strong></a>
     </div>

@@ -34,8 +34,8 @@ if (!$post) {
 </head>
 <body>
 <?php include '../components/navbar.php'; ?>
-<main>
-<div class="post">
+<main class="home-layout">
+<div class="post full-post">
     <h1><?php echo htmlspecialchars($post['title']); ?></h1>
     <p class="meta">
         Posted by <strong><?php echo htmlspecialchars($post['username']); ?></strong>

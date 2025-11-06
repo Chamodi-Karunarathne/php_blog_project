@@ -67,38 +67,69 @@ $stmt->close();
 
 <?php include '../components/navbar.php'; ?>
 
-<div class="profile-container">
-  <h2>My Profile</h2>
+<main class="profile-layout">
+  <section class="profile-container">
+    <header class="profile-header">
+      <span class="pill">Profile</span>
+      <h1>Account Preferences</h1>
+      <p class="profile-subtitle">Refresh your details to keep your public profile polished.</p>
+    </header>
 
-  <?php if ($message): ?>
-    <p class="success-msg"><?php echo htmlspecialchars($message); ?></p>
-  <?php endif; ?>
+    <?php if ($message): ?>
+      <p class="success-msg"><?php echo htmlspecialchars($message); ?></p>
+    <?php endif; ?>
 
-  <div class="profile-card">
-    <div class="profile-pic-wrapper">
-      <img 
-        src="<?php echo $user['profile_image'] 
-          ? '../uploads/' . htmlspecialchars($user['profile_image']) 
-          : '../assets/default-avatar.png'; ?>" 
-        alt="Profile Picture" 
-        class="profile-pic"
-      >
-    </div>
+    <form method="POST" enctype="multipart/form-data" class="profile-form">
+      <div class="profile-form__grid">
+        <div class="profile-form__visual">
+          <div class="profile-pic-wrapper">
+            <img
+              src="<?php echo $user['profile_image']
+                ? '../uploads/' . htmlspecialchars($user['profile_image'])
+                : '../assets/default-avatar.png'; ?>"
+              alt="Profile picture"
+              class="profile-pic"
+            >
+          </div>
+          <p class="profile-avatar-hint">This avatar appears beside your posts and comments.</p>
 
-    <form method="POST" enctype="multipart/form-data">
-        <label>Change Profile Picture:</label><br>
-      <input type="file" name="profile_image" accept="image/*"><br><br>
-      <label>Display Name:</label><br>
-      <input type="text" name="display_name" 
-             value="<?php echo htmlspecialchars($user['display_name']); ?>" 
-             required><br><br>
-      <p><strong>Username:</strong> <?php echo htmlspecialchars($user['username']); ?></p>
-      <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
+          <div class="profile-details">
+            <div class="profile-info-chip">
+              <span class="profile-info-label">Username</span>
+              <span class="profile-info-value"><?php echo htmlspecialchars($user['username']); ?></span>
+            </div>
+            <div class="profile-info-chip">
+              <span class="profile-info-label">Email</span>
+              <span class="profile-info-value"><?php echo htmlspecialchars($user['email']); ?></span>
+            </div>
+          </div>
+        </div>
 
-      <button type="submit" class="btn-filled">Save Changes</button>
+        <div class="profile-form__fields">
+          <div class="profile-field">
+            <label for="profile_image">Profile picture</label>
+            <div class="file-input-wrapper profile-file-input">
+              <input type="file" name="profile_image" id="profile_image" accept="image/*">
+              <span class="file-input-label">Click or drag an image to upload</span>
+              <span class="field-hint">PNG or JPG up to 2&nbsp;MB recommended.</span>
+            </div>
+          </div>
+
+          <div class="profile-field">
+            <label for="display_name">Display name</label>
+            <input type="text" name="display_name" id="display_name"
+                   value="<?php echo htmlspecialchars($user['display_name']); ?>"
+                   required>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-actions">
+        <button type="submit" class="btn-filled">Save changes</button>
+      </div>
     </form>
-  </div>
-</div>
+  </section>
+</main>
 
 <?php include '../components/footer.php'; ?>
 

@@ -30,35 +30,46 @@ $isLoggedIn = isset($_SESSION["user_id"]);
         <?php include 'components/top_liked.php'; ?>
         <div class="posts-container">
             <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="post">
-                    <h2>
-                        <a href="<?php echo $isLoggedIn ? 'pages/view_post.php?id=' . $row['id'] : 'pages/login.php'; ?>">
-                            <?php echo htmlspecialchars($row['title']); ?>
-                        </a>
-                    </h2>
-                    <p class="meta">
-                        Posted by <strong><?php echo htmlspecialchars($row['username']); ?></strong>
-                        on <?php echo date('M j, Y', strtotime($row['created_at'])); ?>
-                    </p>
-
-                    <div class="markdown-content" 
-                        data-content="<?php echo htmlspecialchars($row['content'], ENT_QUOTES); ?>">
-                    </div>
-
-                    <?php if (!empty($row['image'])): ?>
-                        <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Post image">
+                <?php
+                    $hasImage = !empty($row['image']);
+                    $postLink = $isLoggedIn
+                        ? 'pages/view_post.php?id=' . $row['id']
+                        : 'pages/login.php';
+                ?>
+                <article class="post post-card<?php echo $hasImage ? ' has-cover' : ''; ?>">
+                    <?php if ($hasImage): ?>
+                        <figure class="post-card__cover">
+                            <img src="uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['title']); ?>">
+                        </figure>
                     <?php endif; ?>
 
-                    <!-- Like Button Component -->
-                    <?php $post_id = $row['id']; include 'components/like_button.php'; ?>
+                    <header class="post-card__header">
+                        <h2>
+                            <a href="<?php echo $postLink; ?>">
+                                <?php echo htmlspecialchars($row['title']); ?>
+                            </a>
+                        </h2>
+                        <p class="meta">
+                            Posted by <strong><?php echo htmlspecialchars($row['username']); ?></strong>
+                            on <?php echo date('M j, Y', strtotime($row['created_at'])); ?>
+                        </p>
+                    </header>
 
-                    <a href="<?php echo $isLoggedIn ? 'pages/view_post.php?id=' . $row['id'] : 'pages/login.php'; ?>" class="btn">
-                        Read More →
-                    </a>
+                    <div class="post-card__excerpt">
+                        <div class="markdown-content" 
+                            data-content="<?php echo htmlspecialchars($row['content'], ENT_QUOTES); ?>">
+                        </div>
+                    </div>
 
-                </div>
+                    <footer class="post-card__footer">
+                        <?php $post_id = $row['id']; include 'components/like_button.php'; ?>
+                        <a href="<?php echo $postLink; ?>" class="post-card__link">
+                            Read Article →
+                        </a>
+                    </footer>
+                </article>
             <?php endwhile; ?>
-        </div> <!-- end of posts-container -->
+        </div>
     </div> <!-- end of main-content -->
 
 </main>
@@ -70,7 +81,10 @@ $isLoggedIn = isset($_SESSION["user_id"]);
   document.querySelectorAll(".markdown-content").forEach(div => {
       const raw = div.getAttribute("data-content");
       let html = converter.makeHtml(raw);
-      if (html.length > 400) html = html.substring(0, 400) + "...";
+      const maxLength = 180;
+      if (html.length > maxLength) {
+          html = html.substring(0, maxLength).trimEnd() + "...";
+      }
       div.innerHTML = html;
   });
 </script>
