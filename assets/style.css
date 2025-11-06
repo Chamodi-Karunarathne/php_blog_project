@@ -16,6 +16,7 @@ html, body {
   flex-direction: column;
 }
 
+/* ---------- Global: Navigation Links ---------- */
 .nav-link, 
 .btn-outline, 
 .btn-filled, 
@@ -24,7 +25,7 @@ html, body {
   text-decoration: none !important;
 }
 
-/* Main content takes available height */
+/* ---------- Global: Typography & Links ---------- */
 main {
   flex: 1;
 }
@@ -47,7 +48,7 @@ a:hover {
 
 
 
-/* ---------- Posts Grid ---------- */
+/* ---------- Component: Post Cards ---------- */
 .posts-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -88,7 +89,7 @@ a:hover {
   margin-bottom: 0.75rem;
 }
 
-/* ---------- Buttons (in posts) ---------- */
+/* ---------- Component: Buttons ---------- */
 button, .btn {
   
   background: #8ac189fd;
@@ -107,7 +108,7 @@ button:hover, .btn:hover {
   
 }
 
-/* ---------- Markdown styling ---------- */
+/* ---------- Component: Markdown Rendering ---------- */
 .markdown-content h1, .markdown-content h2, .markdown-content h3 {
   margin-top: 1rem;
 }
@@ -122,70 +123,7 @@ button:hover, .btn:hover {
   font-style: italic;
 }
 
-/* ---------- Responsive Adjustments ---------- */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .nav-left {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .posts-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* ---------- Profile Page ---------- */
-.profile-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  text-align: center;
-}
-
-.profile-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.profile-pic-wrapper {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  overflow: hidden;
-  /*border: 3px solid var(--accent--mid);*/
-  margin-bottom: 1rem;
-}
-
-.profile-pic {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.profile-container input[type="text"],
-.profile-container input[type="file"] {
-  margin-top: 0.5rem;
-}
-
-.success-msg {
-  background: var(--accent--light);
-  color: var(--green--700);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  display: inline-block;
-}
-
-/* ---------- Like buttion ---------- */
-
+/* ---------- Component: Like Section ---------- */
 .like-section {
   display: flex;
   align-items: center;
@@ -216,7 +154,7 @@ button:hover, .btn:hover {
 }
 
 
-/* Sidebar & carousel layout */
+/* ---------- Layout: Home Feed & Carousel ---------- */
 .home-layout {
   display: block;
   width: min(1120px, 100%);
@@ -263,7 +201,7 @@ button:hover, .btn:hover {
   border-radius: 999px;
 }
 
-/* Card width matches Gynger layout but stays inside wrapper */
+
 .top-liked .slide {
   flex: 0 0 clamp(320px, 64vw, 640px);
   display: grid;
@@ -337,7 +275,81 @@ button:hover, .btn:hover {
   margin: 0 auto;
   box-sizing: border-box;
 }
-/* ---------- Add Post Page ---------- */
+
+/* ---------- Component: Post Actions ---------- */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.4rem;
+  border-radius: 60px;
+  font-weight: 500;
+  background: #8ac189fd;
+  color: #043b3b;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.action-btn:hover {
+  background: #043b3b;
+  color: #f5f5f5fd;
+  text-decoration: none;
+}
+
+.delete-action {
+  background: #ad2617;
+  color: #fff;
+}
+
+.delete-action:hover {
+  background: #6d2017;
+  color: #fff;
+}
+
+/* ---------- Page: Profile ---------- */
+.profile-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-pic-wrapper {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  /*border: 3px solid var(--accent--mid);*/
+  margin-bottom: 1rem;
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-container input[type="text"],
+.profile-container input[type="file"] {
+  margin-top: 0.5rem;
+}
+
+/* ---------- Page: Add Post ---------- */
 .post-form-container {
   max-width: 800px;
   margin: 2rem auto;
@@ -347,11 +359,6 @@ button:hover, .btn:hover {
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
-.post-form-container h2 {
-  text-align: center;
-  color: #043b3b;
-  margin-bottom: 1.5rem;
-}
 
 .post-form-container form {
   display: flex;
@@ -392,38 +399,62 @@ button:hover, .btn:hover {
   color: #043b3b;
 }
 
-/* ---------- Actions Button Styles ---------- */
-.actions {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.action-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.55rem 1.4rem;
-  border-radius: 60px;
-  font-weight: 500;
-  background: #8ac189fd;
+.post-form-container label {
   color: #043b3b;
-  transition: background 0.3s ease, color 0.3s ease;
+  font-weight: 500;
+  font-size: 0.95rem;
 }
 
-.action-btn:hover {
-  background: #043b3b;
-  color: #f5f5f5fd;
-  text-decoration: none;
+/* Make file input blend with theme */
+.post-form-container input[type="file"] {
+  border: 1px solid #8ac189;
+  border-radius: 8px;
+  background-color: #f5fff5;
+  padding: 0.6rem;
+  color: #043b3b;
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
-.delete-action {
-  background: #ad2617;
+/* Customize the actual button portion */
+.post-form-container input[type="file"]::file-selector-button {
+  background-color: #043b3b;
   color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  margin-right: 1rem;
 }
 
-.delete-action:hover {
-  background: #6d2017;
-  color: #fff;
+.post-form-container input[type="file"]::file-selector-button:hover {
+  background-color: #8ac189;
+  color: #043b3b;
+}
+
+
+/* ---------- Utilities ---------- */
+.success-msg {
+  background: var(--accent--light);
+  color: var(--green--700);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+/* ---------- Responsive: Global Adjustments ---------- */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .nav-left {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .posts-container {
+    grid-template-columns: 1fr;
+  }
 }
 

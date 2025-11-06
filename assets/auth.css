@@ -120,7 +120,7 @@ body {
 
 /* ---------- Card Style ---------- */
 .auth-card {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.884);
   backdrop-filter: blur(8px);
   padding: 1rem 3rem;
   border-radius: 16px;

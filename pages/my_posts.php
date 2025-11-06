@@ -64,7 +64,7 @@ if ($role === 'admin') {
                   <img src="../uploads/<?php echo htmlspecialchars($row['image']); ?>" alt="Post image">
                 <?php endif; ?>
                 <p class="meta">
-                    Posted by <?php echo htmlspecialchars($row["username"]); ?> 
+                    Posted by<b> <?php echo htmlspecialchars($row["username"]); ?> </b>
                     on <?php echo $row["created_at"]; ?>
                 </p>
                 <div class="actions">
