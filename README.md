@@ -8,6 +8,7 @@ A glassmorphism-themed blogging platform built with vanilla PHP and MySQL. It su
 - **Image uploads**: optional cover images per post.
 - **Like system**: visitors can like posts; the most popular content appears in a dedicated carousel.
 - **Glass UI**: cohesive styling for navigation, auth forms, post cards, and profile pages.
+- **Lazy loading**: the home feed loads posts in batches with a *Load More* button.
 
 ## Tech Stack
 - PHP 8+
@@ -20,7 +21,7 @@ A glassmorphism-themed blogging platform built with vanilla PHP and MySQL. It su
 php_blog_project/
 ├── assets/            # CSS assets shared across the site
 ├── components/        # Reusable PHP partials (navbar, footer, like button, etc.)
-├── pages/             # Auth, CRUD, and profile pages
+├── pages/             # Auth, CRUD, load-more endpoint, and profile pages
 ├── uploads/           # Uploaded post images and profile avatars
 ├── config.php         # Database connection details
 ├── index.php          # Home page
@@ -106,6 +107,7 @@ git clone https://github.com/Chamodi-Karunarathne/php_blog_project.git
 - **Database errors**: check that the database and tables exist and that `config.php` contains the correct credentials.
 - **Uploads failing**: confirm that `uploads/` has proper write permissions and that `file_uploads` is enabled in `php.ini`.
 - **Missing assets**: clear your browser cache or ensure the `assets/` folder is accessible via the correct relative paths.
+- **Load more not working**: make sure `pages/load_posts.php` is accessible (and not blocked by server config) and that JavaScript is enabled in the browser.
 
 ## License
 This project is distributed under the MIT License. Feel free to fork, extend, and adapt it for your own blogging experiments.
