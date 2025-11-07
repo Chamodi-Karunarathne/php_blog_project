@@ -41,6 +41,8 @@ if ($role === 'admin') {
     <link rel="stylesheet" href="/php_blog_project/assets/style.css">
     <link rel="stylesheet" href="/php_blog_project/assets/nav.css">
     <link rel="stylesheet" href="/php_blog_project/assets/footer.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
 </head>
 <body>
     <?php include '../components/navbar.php'; ?>

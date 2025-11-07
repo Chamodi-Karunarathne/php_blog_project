@@ -61,6 +61,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../assets/style.css">
     <link rel="stylesheet" href="/php_blog_project/assets/nav.css">
     <link rel="stylesheet" href="/php_blog_project/assets/footer.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
 
     <!-- Using a SimpleMDE (Markdown Editor) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
