@@ -20,7 +20,6 @@ A glassmorphism-themed blogging platform built with vanilla PHP and MySQL. It su
 php_blog_project/
 ├── assets/            # CSS assets shared across the site
 ├── components/        # Reusable PHP partials (navbar, footer, like button, etc.)
-├── includes/          # Shared includes (database helpers, etc.)
 ├── pages/             # Auth, CRUD, and profile pages
 ├── uploads/           # Uploaded post images and profile avatars
 ├── config.php         # Database connection details

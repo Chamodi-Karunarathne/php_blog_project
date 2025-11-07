@@ -231,6 +231,17 @@ a:hover {
   color: #f6fffd;
 }
 
+.home-load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.home-load-more .btn-outline {
+  padding: 0.8rem 2.4rem;
+  font-weight: 600;
+}
+
 .pill {
   display: inline-flex;
   align-items: center;
@@ -877,11 +888,11 @@ button:hover, .btn:hover {
 }
 
 /* ---------- Page: Add Post ---------- */
-body.page-add-post {
+/*body.page-add-post {
   position: relative;
   background: #fff;
   color: #043b3b;
-}
+} 
 
 body.page-add-post::before,
 body.page-add-post::after {
@@ -895,7 +906,7 @@ body.page-add-post::after {
   z-index: 0;
   pointer-events: none;
 }
-
+*/
 body.page-add-post::before {
   top: -120px;
   left: -160px;

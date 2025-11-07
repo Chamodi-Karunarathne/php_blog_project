@@ -4,11 +4,20 @@ include 'config.php';
 //include 'components/top_liked.php';     // Include top liked posts
 
 // Fetch all posts for public view
+$perPage = 6;
+$page    = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+$offset  = ($page - 1) * $perPage;
+
 $sql = "SELECT posts.*, users.username 
-        FROM posts 
-        JOIN users ON posts.user_id = users.id 
-        ORDER BY posts.created_at DESC";
+    FROM posts 
+    JOIN users ON posts.user_id = users.id 
+    ORDER BY posts.created_at DESC
+    LIMIT $perPage OFFSET $offset";
 $result = $conn->query($sql);
+
+$countRes = $conn->query("SELECT COUNT(*) AS total FROM posts");
+$totalPosts = $countRes ? (int) $countRes->fetch_assoc()['total'] : 0;
+$hasMore = ($offset + $perPage) < $totalPosts;
 
 $isLoggedIn = isset($_SESSION["user_id"]);
 ?>
@@ -28,7 +37,7 @@ $isLoggedIn = isset($_SESSION["user_id"]);
 
     <div class="main-content">
         <?php include 'components/top_liked.php'; ?>
-        <div class="posts-container">
+        <div class="posts-container" data-current-page="<?php echo $page; ?>" data-per-page="<?php echo $perPage; ?>">
             <?php while ($row = $result->fetch_assoc()): ?>
                 <?php
                     $hasImage = !empty($row['image']);
@@ -69,7 +78,14 @@ $isLoggedIn = isset($_SESSION["user_id"]);
                     </footer>
                 </article>
             <?php endwhile; ?>
-        </div>
+                </div>
+                <?php if ($hasMore): ?>
+                    <div class="home-load-more">
+                        <button class="btn-outline" id="load-more-posts" data-next-page="<?php echo $page + 1; ?>">
+                            Load More Posts
+                        </button>
+                    </div>
+                <?php endif; ?>
     </div> <!-- end of main-content -->
 
 </main>
@@ -78,15 +94,61 @@ $isLoggedIn = isset($_SESSION["user_id"]);
 <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
 <script>
   const converter = new showdown.Converter({ emoji: true });
-  document.querySelectorAll(".markdown-content").forEach(div => {
-      const raw = div.getAttribute("data-content");
-      let html = converter.makeHtml(raw);
-      const maxLength = 180;
-      if (html.length > maxLength) {
-          html = html.substring(0, maxLength).trimEnd() + "...";
-      }
-      div.innerHTML = html;
-  });
+    function hydrateMarkdown(scope = document) {
+        scope.querySelectorAll('.markdown-content').forEach(div => {
+            if (div.dataset.hydrated === 'true') return;
+            const raw = div.getAttribute('data-content');
+            let html = converter.makeHtml(raw);
+            const maxLength = 180;
+            if (html.length > maxLength) {
+                html = html.substring(0, maxLength).trimEnd() + '...';
+            }
+            div.innerHTML = html;
+            div.dataset.hydrated = 'true';
+        });
+    }
+
+    hydrateMarkdown();
+
+    const loadMoreBtn = document.getElementById('load-more-posts');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', async () => {
+            const container = document.querySelector('.posts-container');
+            if (!container) return;
+
+            const perPage = parseInt(container.dataset.perPage, 10) || 6;
+            const nextPage = parseInt(loadMoreBtn.dataset.nextPage, 10) || 2;
+
+            loadMoreBtn.disabled = true;
+            loadMoreBtn.textContent = 'Loading...';
+
+            try {
+                const response = await fetch(`/php_blog_project/pages/load_posts.php?page=${nextPage}&per_page=${perPage}`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.text();
+
+            const temp = document.createElement('div');
+            temp.innerHTML = data.trim();
+
+            const newCards = temp.querySelectorAll('.post');
+            newCards.forEach(card => container.appendChild(card));
+            hydrateMarkdown(container);
+
+                const hasMore = temp.querySelector('[data-has-more="false"]');
+                if (hasMore) {
+                    loadMoreBtn.remove();
+                } else {
+                    loadMoreBtn.disabled = false;
+                    loadMoreBtn.textContent = 'Load More Posts';
+                    loadMoreBtn.dataset.nextPage = nextPage + 1;
+                }
+            } catch (error) {
+                console.error('Unable to load more posts', error);
+                loadMoreBtn.disabled = false;
+                loadMoreBtn.textContent = 'Load More Posts';
+            }
+        });
+    }
 </script>
 
 <?php include 'components/like_script.php'; ?>
