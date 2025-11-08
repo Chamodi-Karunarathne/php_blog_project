@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bind_param("ssss", $username, $display_name, $email, $hashedPassword);
 
         if ($stmt->execute()) {
-            header("Location: ../index.php");
+            header("Location:login.php");
         } else {
             $message = "Error: " . $stmt->error;
         }
